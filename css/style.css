@@ -182,11 +182,10 @@ section[id] { scroll-margin-top: 16px; }
 .note--a { right: -14px; top: -34px; transform: rotate(-12deg); }
 .note--b { left: -10px; bottom: -30px; transform: rotate(-8deg); font-size: 44px; letter-spacing: -.1em; }
 .note--c { right: 18px; bottom: -34px; transform: rotate(-16deg); font-size: 54px; }
-.note--d { right: -6px; top: -30px; transform: rotate(-6deg); font-size: 30px; }
 @media (max-width: 480px) {
   .qa { transform: none; }
   .qa:nth-child(2n) { margin-top: 0; }
-  .note--a, .note--d { right: 4px; }
+  .note--a { right: 4px; }
   .note--b { left: 6px; }
 }
 
@@ -229,6 +228,7 @@ section[id] { scroll-margin-top: 16px; }
 @media (max-width: 900px) { .cta { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 480px) { .price__card, .req { padding: 24px 20px; } }
 .cta .btns { margin-top: 28px; }
+.cta .lede a { overflow-wrap: anywhere; }
 .led {
   display: grid; gap: 10px; justify-items: end; padding: 24px 28px; border-radius: 16px;
   background: var(--led-bg); border: 1px solid var(--line);
@@ -265,12 +265,6 @@ section[id] { scroll-margin-top: 16px; }
 
 /* Подвал */
 .foot { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; padding-block: 48px 40px; border-top: 1px solid var(--line); }
-.foot__handle {
-  justify-self: start; display: inline-block; font: 700 40px/1.1 Caveat, cursive; color: #fff;
-  transform: rotate(-6deg); text-decoration: none; text-underline-offset: 6px;
-  max-width: 92%; overflow-wrap: anywhere;
-}
-.foot__handle:hover { text-decoration: underline; }
 .foot__nav ul { display: flex; flex-wrap: wrap; gap: 8px 28px; }
 .foot__nav a { color: #fff; }
 .foot__small { font-size: 15px; color: #A8A8A8; max-width: 70ch; }
