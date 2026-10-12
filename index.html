@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ЗАРАБОТАЙ — онлайн-программа по заработку на партнёрском трафике</title>
+<meta name="description" content="Онлайн-программа «ЗАРАБОТАЙ»: 6 модулей от стратегии до оптимизации, шаблоны, практикум по трекингу и поддержка в Telegram. Дистанционно, доступ 1 месяц.">
+<meta name="theme-color" content="#000000">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  /* Пауза анимации до первого кадра: сохранённый выбор, иначе системная настройка. */
+  (function () {
+    var v = null;
+    try { v = localStorage.getItem('zarabotay:motion'); } catch (e) {}
+    var off = v ? v === 'off' : matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (off) document.documentElement.classList.add('motion-off');
+  })();
+</script>
+</head>
+<body>
+<canvas id="stars" class="stars" aria-hidden="true"></canvas>
+<a class="skip" href="#main">Перейти к содержанию</a>
+
+<header class="top wrap">
+  <a class="brand" href="#main" aria-label="ЗАРАБОТАЙ — в начало">
+    <svg class="brand__z" viewBox="0 0 9 9" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="currentColor" d="M0 0h9v2H0zM6 2h3v1H6zM5 3h3v1H5zM4 4h3v1H4zM3 5h3v1H3zM1 6h3v1H1zM0 7h9v2H0z"/></svg>
+    <span class="brand__name">ЗАРАБОТАЙ</span>
+  </a>
+  <nav class="nav" aria-label="Разделы">
+    <ul role="list">
+      <li><a href="#program">Программа</a></li>
+      <li><a href="#how">Как это работает</a></li>
+      <li><a href="#price">Стоимость</a></li>
+      <li><a href="#requisites">Реквизиты</a></li>
+    </ul>
+  </nav>
+  <button class="motion-btn" type="button" id="motion" aria-pressed="false">
+    <svg class="motion-btn__pause" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 3h3v10H4zM9 3h3v10H9z"/></svg>
+    <svg class="motion-btn__play" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2.5v11l9-5.5z"/></svg>
+    <span>Пауза анимации</span>
+  </button>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ═══ Первый экран ═══ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__glow" aria-hidden="true">
+      <span class="bokeh bokeh--blue"></span>
+      <span class="bokeh bokeh--warm"></span>
+      <span class="bokeh bokeh--pink"></span>
+    </div>
+
+    <div class="stage" id="z-stage" aria-hidden="true">
+      <img class="stage__still" src="img/z-still.webp" alt="" width="1800" height="1200" decoding="async" fetchpriority="high">
+      <canvas class="stage__gl" id="z-canvas"></canvas>
+    </div>
+
+    <!-- вырезки балансов: чистый декор -->
+    <div class="chips" id="chips" aria-hidden="true">
+      <div class="chip" style="--x:34%;--y:2%;--d:.5;--s:40;--ph:.2s" data-c="1">
+        <div class="chip__in"><b>13&nbsp;110,25&nbsp;₽</b></div>
+      </div>
+      <div class="chip" style="--x:6%;--y:20%;--d:.8;--s:58;--ph:-1.3s" data-c="2">
+        <div class="chip__in">
+          <small>Вещи <i class="caret">⌄</i></small>
+          <b>22&nbsp;217,11&nbsp;₽</b>
+          <small>Ставка 16% годовых</small>
+        </div>
+      </div>
+      <div class="chip chip--big" style="--x:auto;--r:3%;--y:43%;--d:1;--s:80;--ph:-2.1s" data-c="3">
+        <div class="chip__in">
+          <small>Общие активы <i class="dot">⊙</i></small>
+          <b>339,614.11<em> RUB&nbsp;▾</em></b>
+        </div>
+      </div>
+      <div class="chip chip--back" style="--x:30%;--y:80%;--d:-.5;--s:40;--ph:-.7s" data-c="4">
+        <div class="chip__in"><b>18&nbsp;543</b></div>
+      </div>
+      <div class="chip chip--flash is-on" style="--x:auto;--r:13%;--y:9%;--d:.9;--s:54;--ph:-3s" data-c="5">
+        <div class="chip__in"><b>+50&nbsp;000&nbsp;₽</b></div>
+      </div>
+      <div class="chip chip--flash" style="--x:auto;--r:11%;--y:76%;--d:.7;--s:54;--ph:-1.8s" data-c="6">
+        <div class="chip__in"><b>+31183.24 <i class="spark">✦</i></b></div>
+      </div>
+      <div class="chip" style="--x:9%;--y:55%;--d:.6;--s:54;--ph:-2.6s" data-c="7">
+        <div class="chip__in">
+          <small>USDT <i class="caret">▾</i></small>
+          <b>5,005.05</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__text wrap">
+      <h1 id="hero-title" class="hero__title">ЗАРАБОТАЙ</h1>
+      <div class="hero__row">
+        <p class="hero__lede">Онлайн-программа по заработку на партнёрском трафике — от стратегии до первых выплат.</p>
+        <div class="btns">
+          <a class="btn btn--red" href="#price">Записаться</a>
+          <a class="btn btn--ghost" href="#program">Программа</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Цифры ═══ -->
+  <section class="section wrap" id="facts" aria-labelledby="facts-title">
+    <h2 class="h2" id="facts-title">Цифры</h2>
+    <ul class="facts" role="list">
+      <li class="fact">
+        <span class="sticker" aria-hidden="true">💰</span>
+        <p class="fact__body">
+          <span class="fact__num" aria-hidden="true" data-count="6">6</span>
+          <span class="sr-only">6</span>
+          <span class="fact__cap">модулей — от стратегии до оптимизации</span>
+        </p>
+      </li>
+      <li class="fact">
+        <span class="sticker" aria-hidden="true">🤑</span>
+        <p class="fact__body">
+          <span class="fact__num" aria-hidden="true" data-count="30">30</span>
+          <span class="sr-only">30</span>
+          <span class="fact__cap">дней доступа к личному кабинету</span>
+        </p>
+      </li>
+      <li class="fact">
+        <span class="sticker" aria-hidden="true">😁</span>
+        <p class="fact__body">
+          <span class="fact__num" aria-hidden="true" data-count="100" data-suffix="%">100%</span>
+          <span class="sr-only">100%</span>
+          <span class="fact__cap">онлайн: занимаетесь в своём темпе</span>
+        </p>
+      </li>
+      <li class="fact">
+        <span class="sticker sticker--frog" aria-hidden="true">🐸</span>
+        <p class="fact__body">
+          <span class="fact__num" aria-hidden="true" data-count="3">3</span>
+          <span class="sr-only">3</span>
+          <span class="fact__cap">набора шаблонов: регламенты, скрипты, чек-листы</span>
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ═══ Программа ═══ -->
+  <section class="section wrap" id="program" aria-labelledby="program-title">
+    <h2 class="h2" id="program-title">Программа</h2>
+    <p class="lede">Шесть модулей по порядку: от выбора стратегии до масштабирования того, что работает.</p>
+    <ol class="cards" role="list">
+      <li class="card">
+        <p class="card__top" aria-hidden="true"><small>Модуль ⌄</small><b>01/06</b></p>
+        <span class="card__digit" aria-hidden="true">1</span>
+        <div class="card__bottom">
+          <h3 class="h3">Стратегия</h3>
+          <p>Выбор ниши, партнёрских программ и модели заработка под ваш бюджет.</p>
+        </div>
+      </li>
+      <li class="card">
+        <p class="card__top" aria-hidden="true"><small>Модуль ⌄</small><b>02/06</b></p>
+        <span class="card__digit" aria-hidden="true">2</span>
+        <div class="card__bottom">
+          <h3 class="h3">Источники</h3>
+          <p>Где брать трафик и как оценить источник до того, как тратить деньги.</p>
+        </div>
+      </li>
+      <li class="card">
+        <p class="card__top" aria-hidden="true"><small>Модуль ⌄</small><b>03/06</b></p>
+        <span class="card__digit" aria-hidden="true">3</span>
+        <div class="card__bottom">
+          <h3 class="h3">Запуск кампаний</h3>
+          <p>Первые связки, тестовые бюджеты и настройка рекламных кабинетов.</p>
+        </div>
+      </li>
+      <li class="card">
+        <p class="card__top" aria-hidden="true"><small>Модуль ⌄</small><b>04/06</b></p>
+        <span class="card__digit" aria-hidden="true">4</span>
+        <div class="card__bottom">
+          <h3 class="h3">Воронка</h3>
+          <p>Посадочные страницы, заявки и обработка лидов без потерь.</p>
+        </div>
+      </li>
+      <li class="card">
+        <p class="card__top" aria-hidden="true"><small>Модуль ⌄</small><b>05/06</b></p>
+        <span class="card__digit" aria-hidden="true">5</span>
+        <div class="card__bottom">
+          <h3 class="h3">Аналитика</h3>
+          <p>UTM-метки, postback, события и отчёты, по которым видно, что окупается.</p>
+        </div>
+      </li>
+      <li class="card">
+        <p class="card__top" aria-hidden="true"><small>Модуль ⌄</small><b>06/06</b></p>
+        <span class="card__digit" aria-hidden="true">6</span>
+        <div class="card__bottom">
+          <h3 class="h3">Оптимизация</h3>
+          <p>Масштабируем то, что приносит деньги, и отключаем лишнее.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ═══ Вопросы — вырезки из чата ═══ -->
+  <section class="section wrap" id="faq" aria-labelledby="faq-title">
+    <h2 class="h2" id="faq-title">Вопросы</h2>
+    <p class="lede">Самое частое, что спрашивают в личке перед стартом.</p>
+    <div class="chat-wall">
+      <div class="qa" style="--rot:-3deg">
+        <p class="qa__head" aria-hidden="true"><span>Вопрос из чата</span><span>19:32</span></p>
+        <h3 class="bubble bubble--in">Нужен ли опыт, чтобы начать?</h3>
+        <div class="bubble bubble--out">
+          <p>Нет. Первый модуль — база: термины, модели заработка и как выбрать партнёрку.</p>
+          <span class="bubble__meta" aria-hidden="true">19:33 ✓✓</span>
+        </div>
+        <span class="note note--a" aria-hidden="true">100%<svg viewBox="0 0 60 40"><path d="M4 6c18 4 34 14 48 28m0 0-14-2m14 2-3-13"/></svg></span>
+      </div>
+      <div class="qa" style="--rot:2.5deg">
+        <p class="qa__head" aria-hidden="true"><span>Вопрос из чата</span><span>20:05</span></p>
+        <h3 class="bubble bubble--in">Сколько длится доступ к материалам?</h3>
+        <div class="bubble bubble--out">
+          <p>Месяц с момента оплаты. За это время можно пройти все модули и задать вопросы в чате поддержки.</p>
+          <span class="bubble__meta" aria-hidden="true">20:06 ✓✓</span>
+        </div>
+        <span class="note note--b" aria-hidden="true">∿∿∿</span>
+      </div>
+      <div class="qa" style="--rot:-1.5deg">
+        <p class="qa__head" aria-hidden="true"><span>Вопрос из чата</span><span>21:14</span></p>
+        <h3 class="bubble bubble--in">Вы гарантируете доход?</h3>
+        <div class="bubble bubble--out">
+          <p>Нет, и честно об этом пишем в оферте. Результат зависит от ваших действий, бюджета и того, как вы применяете материалы.</p>
+          <span class="bubble__meta" aria-hidden="true">21:15 ✓✓</span>
+        </div>
+        <span class="note note--c" aria-hidden="true">→</span>
+      </div>
+      <div class="qa" style="--rot:4deg">
+        <p class="qa__head" aria-hidden="true"><span>Вопрос из чата</span><span>22:40</span></p>
+        <h3 class="bubble bubble--in">Как проходит обучение?</h3>
+        <div class="bubble bubble--out">
+          <p>Дистанционно, в личном кабинете: уроки, шаблоны и практикум. Вопросы — в Telegram-чат поддержки.</p>
+          <span class="bubble__meta" aria-hidden="true">22:41 ✓✓</span>
+        </div>
+        <span class="note note--d" aria-hidden="true">@zarabotay_info</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Как это работает ═══ -->
+  <section class="section wrap" id="how" aria-labelledby="how-title">
+    <h2 class="h2" id="how-title">Как это работает</h2>
+    <ol class="steps" role="list">
+      <li class="step">
+        <span class="step__n" aria-hidden="true">01</span>
+        <h3 class="h3">Оплата по оферте</h3>
+        <p>Оплачиваете участие — чек приходит на почту, договор заключается по публичной оферте.</p>
+      </li>
+      <li class="step">
+        <span class="step__n" aria-hidden="true">02</span>
+        <h3 class="h3">Доступ в кабинет</h3>
+        <p>Получаете доступ к личному кабинету: модули, шаблоны, чек-листы и практикум.</p>
+      </li>
+      <li class="step">
+        <span class="step__n" aria-hidden="true">03</span>
+        <h3 class="h3">Учитесь с поддержкой</h3>
+        <p>Проходите модули в своём темпе, вопросы задаёте в Telegram-чате поддержки весь срок доступа.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ═══ Стоимость и условия ═══ -->
+  <section class="section wrap" id="price" aria-labelledby="price-title">
+    <h2 class="h2" id="price-title">Стоимость и условия</h2>
+    <div class="price">
+      <div class="price__card">
+        <p class="price__cap">Стоимость участия</p>
+        <p class="price__sum"><span aria-hidden="true">49&nbsp;900&nbsp;₽</span><span class="sr-only">49900 рублей</span></p>
+        <p class="price__cap">Онлайн-программа · доступ 1 месяц</p>
+        <a class="btn btn--red" href="https://t.me/zarabotay_info" target="_blank" rel="noopener">Записаться в Telegram<span class="sr-only"> (откроется в новой вкладке)</span><span aria-hidden="true"> ↗</span></a>
+        <p class="price__note">Стоимость может меняться в рамках акций и индивидуальных условий.</p>
+      </div>
+      <div class="price__info">
+        <dl class="terms">
+          <div><dt>Формат</dt><dd>дистанционно, в личном кабинете</dd></div>
+          <div><dt>Срок доступа</dt><dd>1 месяц</dd></div>
+          <div><dt>Поддержка</dt><dd>Telegram-чат и email</dd></div>
+          <div><dt>Категория</dt><dd>информационные и образовательные услуги</dd></div>
+        </dl>
+        <h3 class="h3">Что входит</h3>
+        <ul class="ticks" role="list">
+          <li>6 модулей: стратегия, источники, запуск кампаний, воронка, аналитика, оптимизация</li>
+          <li>Практикум по трекингу конверсий: UTM, postback, события</li>
+          <li>Шаблоны и чек-листы: регламенты обработки заявок, скрипты, фильтры</li>
+          <li>Раздел о требованиях к рекламе и типовых рисках</li>
+          <li>Поддержка в Telegram весь срок доступа</li>
+        </ul>
+        <h3 class="h3">Условия</h3>
+        <ul class="ticks ticks--plain" role="list">
+          <li>Доступ открывается после оплаты по публичной оферте.</li>
+          <li>Материалы — для личного использования, передавать доступ третьим лицам нельзя.</li>
+          <li>Персональные результаты не гарантируются и зависят от действий участника.</li>
+          <li>Возвраты — по разделу «Возвраты» в оферте.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Реквизиты (заполнит заказчик) ═══ -->
+  <section class="section wrap" id="requisites" aria-labelledby="req-title">
+    <h2 class="h2" id="req-title">Реквизиты</h2>
+    <dl class="req">
+      <div><dt>Исполнитель</dt><dd>ИП Фамилия Имя Отчество</dd></div>
+      <div><dt>ИНН</dt><dd>000000000000</dd></div>
+      <div><dt>Расчётный счёт</dt><dd>00000000000000000000</dd></div>
+      <div><dt>Банк</dt><dd>Название банка</dd></div>
+      <div><dt>БИК</dt><dd>000000000</dd></div>
+      <div><dt>Корр. счёт</dt><dd>00000000000000000000</dd></div>
+      <div><dt>Email</dt><dd><a href="mailto:mail@example.ru">mail@example.ru</a></dd></div>
+    </dl>
+  </section>
+
+  <!-- ═══ Финальный призыв ═══ -->
+  <section class="section wrap cta" id="contacts" aria-labelledby="cta-title">
+    <div class="cta__text">
+      <h2 class="h2" id="cta-title">Готовы начать?</h2>
+      <p class="lede">Напишите в Telegram — ответим на вопросы и пришлём ссылку на оплату.</p>
+      <div class="btns">
+        <a class="btn btn--red" href="https://t.me/zarabotay_info" target="_blank" rel="noopener">Написать в Telegram<span class="sr-only"> (откроется в новой вкладке)</span><span aria-hidden="true"> ↗</span></a>
+        <a class="btn btn--ghost" href="#price">Стоимость</a>
+      </div>
+    </div>
+    <div class="led" aria-hidden="true">
+      <span class="led__label">CASH</span>
+      <span class="led__num" id="led" data-to="49900">49 900</span>
+    </div>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  <a class="foot__handle" href="https://t.me/zarabotay_info" target="_blank" rel="noopener">@zarabotay_info<span class="sr-only"> — Telegram (откроется в новой вкладке)</span></a>
+  <nav class="foot__nav" aria-label="Нижнее меню">
+    <ul role="list">
+      <li><a href="#program">Программа</a></li>
+      <li><a href="#price">Стоимость</a></li>
+      <li><a href="#requisites">Реквизиты</a></li>
+    </ul>
+  </nav>
+  <p class="foot__small">Онлайн-программа «ЗАРАБОТАЙ». Информационные и образовательные услуги, дистанционно. Персональные результаты не гарантируются.</p>
+  <p class="foot__small">© 2026</p>
+</footer>
+
+<script src="js/stars.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
