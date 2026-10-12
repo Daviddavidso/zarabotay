@@ -12,18 +12,8 @@
 <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
-<script>
-  /* Пауза анимации до первого кадра: сохранённый выбор, иначе системная настройка. */
-  (function () {
-    var v = null;
-    try { v = localStorage.getItem('zarabotay:motion'); } catch (e) {}
-    var off = v ? v === 'off' : matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (off) document.documentElement.classList.add('motion-off');
-  })();
-</script>
 </head>
 <body>
-<canvas id="stars" class="stars" aria-hidden="true"></canvas>
 <a class="skip" href="#main">Перейти к содержанию</a>
 
 <header class="top wrap">
@@ -39,72 +29,30 @@
       <li><a href="#requisites">Реквизиты</a></li>
     </ul>
   </nav>
-  <button class="motion-btn" type="button" id="motion" aria-pressed="false">
-    <svg class="motion-btn__pause" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 3h3v10H4zM9 3h3v10H9z"/></svg>
-    <svg class="motion-btn__play" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 2.5v11l9-5.5z"/></svg>
-    <span>Пауза анимации</span>
-  </button>
 </header>
 
 <main id="main" tabindex="-1">
 
   <!-- ═══ Первый экран ═══ -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero__glow" aria-hidden="true">
-      <span class="bokeh bokeh--blue"></span>
-      <span class="bokeh bokeh--warm"></span>
-      <span class="bokeh bokeh--pink"></span>
-    </div>
-
-    <div class="stage" id="z-stage" aria-hidden="true">
-      <img class="stage__still" src="img/z-still.webp" alt="" width="1800" height="1200" decoding="async" fetchpriority="high">
-      <canvas class="stage__gl" id="z-canvas"></canvas>
-    </div>
-
-    <!-- вырезки балансов: чистый декор -->
-    <div class="chips" id="chips" aria-hidden="true">
-      <div class="chip" style="--x:34%;--y:2%;--d:.5;--s:40;--ph:.2s" data-c="1">
-        <div class="chip__in"><b>13&nbsp;110,25&nbsp;₽</b></div>
-      </div>
-      <div class="chip" style="--x:6%;--y:20%;--d:.8;--s:58;--ph:-1.3s" data-c="2">
-        <div class="chip__in">
-          <small>Вещи <i class="caret">⌄</i></small>
-          <b>22&nbsp;217,11&nbsp;₽</b>
-          <small>Ставка 16% годовых</small>
-        </div>
-      </div>
-      <div class="chip chip--big" style="--x:auto;--r:3%;--y:43%;--d:1;--s:80;--ph:-2.1s" data-c="3">
-        <div class="chip__in">
-          <small>Общие активы <i class="dot">⊙</i></small>
-          <b>339,614.11<em> RUB&nbsp;▾</em></b>
-        </div>
-      </div>
-      <div class="chip chip--back" style="--x:30%;--y:80%;--d:-.5;--s:40;--ph:-.7s" data-c="4">
-        <div class="chip__in"><b>18&nbsp;543</b></div>
-      </div>
-      <div class="chip chip--flash is-on" style="--x:auto;--r:13%;--y:9%;--d:.9;--s:54;--ph:-3s" data-c="5">
-        <div class="chip__in"><b>+50&nbsp;000&nbsp;₽</b></div>
-      </div>
-      <div class="chip chip--flash" style="--x:auto;--r:11%;--y:76%;--d:.7;--s:54;--ph:-1.8s" data-c="6">
-        <div class="chip__in"><b>+31183.24 <i class="spark">✦</i></b></div>
-      </div>
-      <div class="chip" style="--x:9%;--y:55%;--d:.6;--s:54;--ph:-2.6s" data-c="7">
-        <div class="chip__in">
-          <small>USDT <i class="caret">▾</i></small>
-          <b>5,005.05</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero__text wrap">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero__main">
+      <p class="eyebrow">Онлайн-программа · дистанционно</p>
       <h1 id="hero-title" class="hero__title">ЗАРАБОТАЙ</h1>
-      <div class="hero__row">
-        <p class="hero__lede">Онлайн-программа по заработку на партнёрском трафике — от стратегии до первых выплат.</p>
-        <div class="btns">
-          <a class="btn btn--red" href="#price">Записаться</a>
-          <a class="btn btn--ghost" href="#program">Программа</a>
-        </div>
+      <p class="hero__lede">Программа по заработку на партнёрском трафике: стратегия, источники, запуск кампаний, воронка, аналитика и оптимизация. Шесть модулей — от первой связки до первых выплат.</p>
+      <div class="btns">
+        <a class="btn btn--red" href="#price">Записаться</a>
+        <a class="btn btn--ghost" href="#program">Программа</a>
       </div>
+    </div>
+    <div class="summary">
+      <span class="sticker summary__sticker" aria-hidden="true">💰</span>
+      <p class="summary__cap">Стоимость участия</p>
+      <p class="summary__sum"><span aria-hidden="true">49&nbsp;900&nbsp;₽</span><span class="sr-only">49900 рублей</span></p>
+      <dl class="summary__facts">
+        <div><dt>Формат</dt><dd>дистанционно, в личном кабинете</dd></div>
+        <div><dt>Доступ</dt><dd>1 месяц с момента оплаты</dd></div>
+        <div><dt>Поддержка</dt><dd>Telegram-чат весь срок доступа</dd></div>
+      </dl>
     </div>
   </section>
 
@@ -350,7 +298,6 @@
   <p class="foot__small">© 2026</p>
 </footer>
 
-<script src="js/stars.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
